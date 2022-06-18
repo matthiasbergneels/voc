@@ -1,1000 +1,992 @@
 {
-  "info": {
-    "_postman_id": "3869c1e2-5422-435d-b634-a6f6b3d7de2e",
-    "name": "Volvo On Call",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Account Data",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "8790bc31-a163-4ba8-8d17-471874b2b2fc",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"accountVehicleRelationURL\", data.accountVehicleRelations[0]);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": true,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "content-type",
-            "type": "text",
-            "value": " application/json"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/customeraccounts",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "customeraccounts"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Vehicle Relation",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "b98e78e0-e0d5-49aa-a63a-4ee99a68d591",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"VIN\", data.vehicleId);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": true,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "content-type",
-            "type": "text",
-            "value": " application/json"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "url": {
-          "raw": "{{accountVehicleRelationURL}}",
-          "host": [
-            "{{accountVehicleRelationURL}}"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Status",
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": true,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "cache-control",
-            "value": " no-cache",
-            "type": "text"
-          },
-          {
-            "key": "content-type",
-            "value": " application/json",
-            "type": "text"
-          },
-          {
-            "key": "x-device-id",
-            "value": " Device",
-            "type": "text"
-          },
-          {
-            "key": "x-originator-type",
-            "value": " App",
-            "type": "text"
-          },
-          {
-            "key": "x-os-type",
-            "value": " Android",
-            "type": "text"
-          },
-          {
-            "key": "x-os-version",
-            "value": " 22",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/status",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "status"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Attributes",
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": true,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "content-type",
-            "type": "text",
-            "value": " application/json"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/attributes",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "attributes"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Position",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "5e1c8e9b-2244-4993-a8f1-6b27857ea327",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"longitude\", data.position.longitude);",
-              "postman.setEnvironmentVariable(\"latitude\", data.position.latitude);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": false,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "content-type",
-            "type": "text",
-            "value": " application/json"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/position",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "position"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Preclimatization Start",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "fda4a058-8a48-44a7-b91c-21b61cb63ab3",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": false,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"clientAccuracy\":0,\n\t\"clientLatitude\":{{latitude}},\n\t\"clientLongitude\":{{longitude}} \n}"
-        },
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/preclimatization/start",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "preclimatization",
-            "start"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Preclimatization Stop",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "e2dc36f0-b2a7-4aff-a089-3b4d61bf428f",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": false,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "content-type",
-            "type": "text",
-            "value": " application/json"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/preclimatization/stop",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "preclimatization",
-            "stop"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Flash lights",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "e2dc36f0-b2a7-4aff-a089-3b4d61bf428f",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": false,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"clientAccuracy\":0,\n\t\"clientLatitude\":{{latitude}},\n\t\"clientLongitude\":{{longitude}} \n}"
-        },
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/honk_blink/lights",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "honk_blink",
-            "lights"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Lock Car",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "e2dc36f0-b2a7-4aff-a089-3b4d61bf428f",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": false,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "content-type",
-            "type": "text",
-            "value": " application/json"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/lock",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "lock"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Unlock Car",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "e2dc36f0-b2a7-4aff-a089-3b4d61bf428f",
-            "exec": [
-              "var data = JSON.parse(responseBody);",
-              "postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": false,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"clientAccuracy\":0,\n\t\"clientLatitude\":{{latitude}},\n\t\"clientLongitude\":{{longitude}} \n}"
-        },
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/unlock",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "{{VIN}}",
-            "unlock"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Check Service Status",
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "{{volvo_password}}",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "{{volvo_user}}",
-              "type": "string"
-            },
-            {
-              "key": "saveHelperData",
-              "type": "any"
-            },
-            {
-              "key": "showPassword",
-              "value": false,
-              "type": "boolean"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "cache-control",
-            "type": "text",
-            "value": " no-cache"
-          },
-          {
-            "key": "content-type",
-            "type": "text",
-            "value": " application/json"
-          },
-          {
-            "key": "x-device-id",
-            "type": "text",
-            "value": " Device"
-          },
-          {
-            "key": "x-originator-type",
-            "type": "text",
-            "value": " App"
-          },
-          {
-            "key": "x-os-type",
-            "type": "text",
-            "value": " Android"
-          },
-          {
-            "key": "x-os-version",
-            "type": "text",
-            "value": " 22"
-          }
-        ],
-        "url": {
-          "raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/YV1LCK2UCL1544127/services/{{customerServiceId}}",
-          "protocol": "https",
-          "host": [
-            "vocapi{{region}}",
-            "wirelesscar",
-            "net"
-          ],
-          "path": [
-            "customerapi",
-            "rest",
-            "v3.0",
-            "vehicles",
-            "YV1LCK2UCL1544127",
-            "services",
-            "{{customerServiceId}}"
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "3d470061-5aba-4457-a007-ecaae8fad13e",
+		"name": "Volvo On Call",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"accountVehicleRelationURL\", data.accountVehicleRelations[0]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": true,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/customeraccounts",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"customeraccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vehicle Relation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"VIN\", data.vehicleId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": true,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "{{accountVehicleRelationURL}}",
+					"host": [
+						"{{accountVehicleRelationURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": true,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cache-control",
+						"value": " no-cache",
+						"type": "text"
+					},
+					{
+						"key": "content-type",
+						"value": " application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-device-id",
+						"value": " Device",
+						"type": "text"
+					},
+					{
+						"key": "x-originator-type",
+						"value": " App",
+						"type": "text"
+					},
+					{
+						"key": "x-os-type",
+						"value": " Android",
+						"type": "text"
+					},
+					{
+						"key": "x-os-version",
+						"value": " 22",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/status",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attributes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": true,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/attributes",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"attributes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Position",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"longitude\", data.position.longitude);",
+							"postman.setEnvironmentVariable(\"latitude\", data.position.latitude);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/position",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"position"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Preclimatization Start",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"clientAccuracy\":0,\n\t\"clientLatitude\":{{latitude}},\n\t\"clientLongitude\":{{longitude}} \n}"
+				},
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/preclimatization/start",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"preclimatization",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Preclimatization Stop",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/preclimatization/stop",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"preclimatization",
+						"stop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flash lights",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"clientAccuracy\":0,\n\t\"clientLatitude\":{{latitude}},\n\t\"clientLongitude\":{{longitude}} \n}"
+				},
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/honk_blink/lights",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"honk_blink",
+						"lights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/lock",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"lock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unlock Car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"customerServiceId\", data.customerServiceId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"clientAccuracy\":0,\n\t\"clientLatitude\":{{latitude}},\n\t\"clientLongitude\":{{longitude}} \n}"
+				},
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/unlock",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"unlock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Service Status",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/services/{{customerServiceId}}",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"services",
+						"{{customerServiceId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
