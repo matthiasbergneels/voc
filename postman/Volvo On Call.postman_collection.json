@@ -987,6 +987,182 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Charge Locations",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/chargeLocations?status=Accepted",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"chargeLocations"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "Accepted"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set charge time for location",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{volvo_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{volvo_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "cache-control",
+						"type": "text",
+						"value": " no-cache"
+					},
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": " application/json"
+					},
+					{
+						"key": "x-device-id",
+						"type": "text",
+						"value": " Device"
+					},
+					{
+						"key": "x-originator-type",
+						"type": "text",
+						"value": " App"
+					},
+					{
+						"key": "x-os-type",
+						"type": "text",
+						"value": " Android"
+					},
+					{
+						"key": "x-os-version",
+						"type": "text",
+						"value": " 22"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"Accepted\",\n    \"plugInReminderEnabled\": true,\n    \"delayCharging\": {\n        \"enabled\": true,\n        \"startTime\": \"08:30\",\n        \"stopTime\": \"21:00\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vocapi{{region}}.wirelesscar.net/customerapi/rest/v3.0/vehicles/{{VIN}}/chargeLocations/{{chargeLocationID}}",
+					"protocol": "https",
+					"host": [
+						"vocapi{{region}}",
+						"wirelesscar",
+						"net"
+					],
+					"path": [
+						"customerapi",
+						"rest",
+						"v3.0",
+						"vehicles",
+						"{{VIN}}",
+						"chargeLocations",
+						"{{chargeLocationID}}"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
